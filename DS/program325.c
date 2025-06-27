@@ -46,7 +46,6 @@ void InsertLast(PPNODE first , int no)
         {
             temp = temp -> next;
         }
-
             temp -> next = newn;
     }
 }
