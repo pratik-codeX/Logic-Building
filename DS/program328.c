@@ -47,15 +47,15 @@ void InsertLast(PPNODE first , int no)
     }
 }
 
-void Display(PNODE first)
-{
-    while(first != NULL)
-    {
-        printf("| %d | -> ",first->data);
-        first = first->next;
-    }
-    printf("NULL\n");
-}
+// void Display(PNODE first)
+// {
+//     while(first != NULL)
+//     {
+//         printf("| %d | -> ",first->data);
+//         first = first->next;
+//     }
+//     printf("NULL\n");
+// }
 int Count(PNODE first)
 { 
     int iCount = 0;
@@ -116,6 +116,16 @@ void DeleteLast(PPNODE first)
        free(temp ->next);
        temp -> next = NULL;
     }
+}
+
+void Display(PNODE first)
+{
+    while(first != NULL) 
+    {
+        printf("| %d |->",first -> data);
+        first = first -> next;
+    }
+    printf("NULL \n");
 }
 
 int main()

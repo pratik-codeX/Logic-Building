@@ -44,13 +44,23 @@ void InsertLast(PPNODE first , int no)
     if(*first == NULL)      //LL is empty
     {
         *first = newn;
-
     }
     else                    //LL contains atleast 1 node
     {
 
     }
 }
+
+void Display(PNODE first)
+{
+    while(first != NULL)
+    {
+        printf("| %d |->",first -> data);
+        first = first -> next;
+    }
+    printf("NULL\n");
+}
+
 int main()
 {
     PNODE head = NULL;
@@ -60,6 +70,8 @@ int main()
     InsertFirst(&head,21);
 
     InsertFirst(&head,11);
+
+    Display(head);
 
     return 0;
 }

@@ -5,30 +5,31 @@ struct node
 {
     int data;
     struct node *next;
-    struct node *prev;      //$
+    struct node *prev;      // $
 };
 
 typedef struct node NODE;
-typedef struct node *PNODE;
-typedef struct node **PPNODE;
-
+typedef struct node * PNODE;
+typedef struct node ** PPNODE;
 
 void Display(PNODE first)
 {
-    printf("NULL <=>");
+    printf(" NULL <=> ");
 
     while(first != NULL)
     {
-        printf("| %d | <=>",first->data);
+        printf("| %d | <=> ",first->data);
         first = first -> next;
     }
-    printf("NULL \n");
+    
+    printf(" NULL\n");
 }
 
 int Count(PNODE first)
 {
     int iCount = 0;
-     while(first != NULL)
+
+    while(first != NULL)
     {
         iCount++;
         first = first -> next;
@@ -37,44 +38,42 @@ int Count(PNODE first)
     return iCount;
 }
 
-void InsertFirst(PPNODE first , int no)
+void InsertFirst(PPNODE first, int no)
 {
-
     PNODE newn = NULL;
 
     newn = (PNODE)malloc(sizeof(NODE));
 
-    newn->data=no;
+    newn->data = no;
     newn->next = NULL;
-    newn-> prev = NULL;         //$
+    newn->prev = NULL;          // $
 
-    if(*first == NULL)          //if LL is empty
+    if(*first == NULL)
     {
-        *first = newn;       
-    }
-      else                        
-    {
-        newn->next = *first;
-        (*first)->prev = newn;          //$
         *first = newn;
     }
-
+    else
+    {
+        newn->next = *first;
+        (*first) -> prev = newn;    // $
+        *first = newn;
+    }
 }
 
-void InsertLast(PPNODE first , int no)
+void InsertLast(PPNODE first, int no)
 {
     PNODE newn = NULL;
     PNODE temp = NULL;
 
     newn = (PNODE)malloc(sizeof(NODE));
 
-    newn->data=no;
+    newn->data = no;
     newn->next = NULL;
-    newn-> prev = NULL;         //$
+    newn->prev = NULL;          // $
 
-    if(*first == NULL)          //if LL is empty
+    if(*first == NULL)
     {
-        *first = newn;       
+        *first = newn;
     }
     else
     {
@@ -82,17 +81,36 @@ void InsertLast(PPNODE first , int no)
 
         while(temp->next != NULL)
         {
-            temp = temp->next;
+            temp = temp ->next;
         }
 
-        newn->prev = temp;          //$
+        newn->prev = temp;      // $
         temp->next = newn;
     }
-  
 }
 
-void DeleteFirst(PPNODE first)          
+void DeleteFirst(PPNODE first)
 {
+    if(*first == NULL)
+    {
+        return;
+    }
+    else if((*first) -> next == NULL)
+    {
+        free(*first);
+        *first = NULL;
+    }
+    else
+    {
+        *first = (*first) -> next;
+        free((*first) -> prev);         // $
+        (*first) -> prev = NULL;        // $
+    }
+}
+
+void DeleteLast(PPNODE first)
+{
+    PNODE temp = NULL;
 
     if(*first == NULL)
     {
@@ -105,57 +123,36 @@ void DeleteFirst(PPNODE first)
     }
     else
     {
-        *first = (*first)->next;
-        free((*first) -> prev);       //$
-        (*first)->prev = NULL;      //$
+        temp = *first;
 
-    }
-
-}
-
-void DeleteLast(PPNODE first)
-{
-    PNODE temp = NULL;
-    
-     if(*first == NULL)
-    {
-        return;
-    }
-    else if((*first) -> next == NULL)
-    {
-        free(*first);
-        *first = NULL;
-    }
-    else
-    {   temp = *first;
-        while(temp-> next->next != NULL)
-        {
-            temp = temp->next;
+        while(temp -> next != NULL) // CHANGE ZALA AHE TU NIWANT GHE
+        {   
+            temp = temp -> next;
         }
-        temp->prev->next = NULL;            //$
-        free(temp);
 
+        temp->prev->next = NULL;        // $
+        free(temp);
     }
 }
 
-void DeleteAtPos(PPNODE first , int pos)
+void DeleteAtPos(PPNODE first, int pos)
 {
     int iCount = 0;
     int iCnt = 0;
 
     PNODE temp = NULL;
     PNODE target = NULL;
-    
+
     iCount = Count(*first);
 
-    if((pos < 1) || (pos > iCount))        //filter
+    if((pos < 1) || (pos > iCount))
     {
-        printf("Invalid Position \n");
+        printf("Invalid postion\n");
         return;
     }
-    
+
     if(pos == 1)
-    {   
+    {
         DeleteFirst(first);
     }
     else if(pos == iCount)
@@ -166,18 +163,21 @@ void DeleteAtPos(PPNODE first , int pos)
     {
         temp = *first;
 
-        for(iCnt = 1;iCnt < pos - 1;iCnt++)
+        for(iCnt = 1; iCnt < pos-1; iCnt++)
         {
             temp = temp -> next;
         }
 
-        temp->next = target -> next;
-        target-> next -> prev = temp ;
+        target = temp->next;
+
+        temp->next = target->next;
+        target->next->prev = temp;      // $
+
         free(target);
     }
 }
 
-void InsertAtPos(PPNODE first , int no , int pos)
+void InsertAtPos(PPNODE first, int no, int pos)
 {
     int iCount = 0;
     int iCnt = 0;
@@ -187,17 +187,17 @@ void InsertAtPos(PPNODE first , int no , int pos)
 
     iCount = Count(*first);
 
-    if((pos < 1) || (pos > iCount + 1 ))        //filter
+    if((pos < 1) || (pos > iCount +1))
     {
-        printf("Invalid Position \n");
+        printf("Invalid postion\n");
         return;
     }
-    
+
     if(pos == 1)
-    {   
-        InsertFirst(first , no);
+    {
+        InsertFirst(first,no);
     }
-    else if(pos == iCount + 1)
+    else if(pos == iCount+1)
     {
         InsertLast(first,no);
     }
@@ -211,115 +211,116 @@ void InsertAtPos(PPNODE first , int no , int pos)
 
         temp = *first;
 
-        for(iCnt = 1;iCnt < pos - 1;iCnt++)
+        for(iCnt = 1; iCnt < pos-1; iCnt++)
         {
             temp = temp -> next;
         }
 
-        newn->next = temp -> next ;
-        newn ->next -> prev = newn;
-        temp -> next = newn;
-        newn -> prev = temp;
-
+        newn->next = temp -> next;
+        newn->next->prev = newn;        // $
+        temp->next = newn;
+        newn->prev = temp;              // $
     }
 }
 
 int main()
 {
-   PNODE head = NULL;
+    PNODE head = NULL;
+    
+    int iChoice = 0;
+    int iValue = 0;
+    int iPos = 0;
+    int iRet = 0;
 
-   int iChoice = 0;
-   int iValue = 0;
-   int iPos = 0;
-   int iRet = 0;
-
-    printf("-----------------------------------------------------------------------\n");
-    printf("-------------------------Doubly Linear Linked List---------------------\n");
-    printf("---------------------------------------------------------------------\n\n");
-
-   while(1)
-   {
-        printf("-----------------------------------------------------------------------\n");
-        printf("---------------------Please Select the Option--------------------------\n");
-         printf("----------------------------------------------------------------------\n");
+    printf("-------------------------------------------------------------\n");
+    printf("---------------- Doubly Linear LinkedList -------------------\n");
+    printf("-------------------------------------------------------------\n\n");
+    
+    while(1)
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("------------------ Please select the option -----------------\n");
+        printf("-------------------------------------------------------------\n");
         printf("1 : Insert new node at first position\n");
         printf("2 : Insert new node at last position\n");
         printf("3 : Insert new node at given position\n");
-        printf("4 : delete the node at first position\n");
-        printf("5 : Delete the node at last position\n");
-        printf("6 : Delete new node at given position\n");
-        printf("7 : Display all element at LinkedList\n");
-        printf("8 : Count Number of element in LinkedList\n");
+        printf("4 : Delete the node from first position\n");
+        printf("5 : Delete the node from last position\n");
+        printf("6 : Delete the node from given position\n");
+        printf("7 : Display all elements of LinkedList\n");
+        printf("8 : Count number of nodes of LinkedList\n");
         printf("0 : Terminate the application\n");
-        printf("-----------------------------------------------------------------------\n");
+        
+        printf("-------------------------------------------------------------\n");
 
         scanf("%d",&iChoice);
 
         if(iChoice == 1)
         {
-            printf("Enter the data that you want to Insert");
+            printf("Enter the data that you want to insert : \n");
             scanf("%d",&iValue);
 
             InsertFirst(&head,iValue);
         }
         else if(iChoice == 2)
         {
-            printf("Enter the data that you want to Insert");
+            printf("Enter the data that you want to insert : \n");
             scanf("%d",&iValue);
 
             InsertLast(&head,iValue);
         }
         else if(iChoice == 3)
         {
-            printf("Enter the data that you want to Insert");
+            printf("Enter the data that you want to insert : \n");
             scanf("%d",&iValue);
 
-             printf("Enter the position that you want to Insert new node");
+            printf("Enter the position at which you want to insert new node : \n");
             scanf("%d",&iPos);
-
 
             InsertAtPos(&head,iValue,iPos);
         }
-        
         else if(iChoice == 4)
         {
-            printf("Deleting the first element form LinkedList");
+            printf("Deleting the first element from LinkedList\n");
 
             DeleteFirst(&head);
         }
-         else if(iChoice == 5)
+        else if(iChoice == 5)
         {
-            printf("Deleting the last element form LinkedList");
+            printf("Deleting the last element from LinkedList\n");
 
             DeleteLast(&head);
         }
         else if(iChoice == 6)
         {
-             printf("Enter the position form which you want to delete node");
-            scanf("%d",&iPos);
+            printf("Deleting the element from given position from LinkedList\n");
 
+            printf("Enter the position from which you want to delete the node : \n");
+            scanf("%d",&iPos);
 
             DeleteAtPos(&head,iPos);
         }
         else if(iChoice == 7)
         {
-         printf("Elements of Linked List are : ");
-         Display(head);
+            printf("Elements of the LinkedList are : \n");
+            Display(head);
         }
-         else if(iChoice == 8)
+        else if(iChoice == 8)
         {
             iRet = Count(head);
-         printf("Elements of Linked List are : %d",iRet);
+            printf("Number of elements in the LinkedList are : %d\n",iRet);
         }
-         else if(iChoice == 0)
+        else if(iChoice == 0)
         {
-         printf("Thank you for wasting your Time \n");
+            printf("Thank you for using our application\n");
             break;
         }
         else
         {
-            printf("Invalid Choice ");
+            printf("Invalid choice\n");
         }
+        printf("-------------------------------------------------------------\n");
     }
+
     return 0;
 }

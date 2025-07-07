@@ -44,7 +44,6 @@ void InsertLast(PPNODE first , int no)
     if(*first == NULL)
     {
         *first = newn;
-
     }
     else                    
     {

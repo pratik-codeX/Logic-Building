@@ -219,7 +219,6 @@ int main()
     printf("Number of elements in linked list are : %d \n\n",iRet);
 
    InsertAtPos(&head,105,5);
-
    
     Display(head);
 

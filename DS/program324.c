@@ -67,6 +67,7 @@ void Display(PNODE first)
     }
     printf("NULL\n");
 }
+
 int Count(PNODE first)
 { 
     int iCount = 0;
