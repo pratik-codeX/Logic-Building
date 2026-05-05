@@ -13,26 +13,24 @@ int main()
     printf("Enter the file name that you want to open : \n");
     scanf("%s",Fname);
 
-   fd = open(Fname, O_RDONLY);       
-   
-        if(fd == -1)
-        {
-            printf("Unable to open file ");
-        }
-        else
-        {
-            printf("File is succesfully opned  fd  :%d\n",fd);
+    fd = open(Fname, O_RDONLY);       
+    if(fd == -1)
+    {
+        printf("Unable to open file ");
+    }
+    else
+    {
+        printf("File is succesfully opned fd  :%d\n",fd);
                         
-            while((iRet = read(fd,Buffer,10)) != 0)
-            {
-
-                // printf("%s",Buffer); 
-                write(1,Buffer,iRet);              
-                memset(Buffer,'\0',10);
-            }
-
-            close(fd);
+        while((iRet = read(fd,Buffer,10)) != 0)
+        {
+            // printf("%s",Buffer); 
+            write(1,Buffer,iRet);              
+            memset(Buffer,'\0',10);
         }
+
+       close(fd);
+    }
 
     return 0;
 }

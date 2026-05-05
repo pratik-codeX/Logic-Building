@@ -14,7 +14,7 @@ void InsertFirst(PPNODE first , int no)
     newn = (PNODE)malloc(sizeof(NODE));     
 
     newn->data = no;                        
-    newn->next = NULL;                      
+    newn->next = NULL;               
 
     newn -> next = *first;
     *first = newn;

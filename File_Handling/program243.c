@@ -15,24 +15,23 @@ int main()
 
    fd = open(Fname, O_RDONLY);       
    
-        if(fd == -1)
-        {
-            printf("Unable to open file ");
-        }
+    if(fd == -1)
+    {
+        printf("Unable to open file ");
+    }
         else
         {
             printf("File is succesfully opned  fd  :%d\n",fd);
                         
-            while((iRet = read(fd,Buffer,sizeof(Buffer))) != 0)
-            {
-
-                // printf("%s",Buffer); 
-                write(1,Buffer,iRet);              
-                memset(Buffer,'\0',sizeof(Buffer));
-            }
-
-            close(fd);
+        while((iRet = read(fd,Buffer,sizeof(Buffer))) != 0)
+        {
+            // printf("%s",Buffer); 
+            write(1,Buffer,iRet);              
+           memset(Buffer,'\0',sizeof(Buffer));
         }
+
+        close(fd);
+    }
 
     return 0;
 }

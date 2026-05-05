@@ -15,30 +15,28 @@ int main()
 
    fd = open(Fname, O_RDONLY);       // Change ahe yaat like bookmark pustak ethun pudhe ughdnare APPEND mule 
    
-        if(fd == -1)
-        {
-            printf("Unable to open file ");
-        }
-        else
-        {
-            printf("File is succesfully opned \n");
-                        
-            iRet = read(fd,Buffer,11); 
+   if(fd == -1)
+    {
+        printf("Unable to open file ");
+    }
+    else
+    {
+        printf("File is succesfully opned with fd : %d\n",fd);
+                    
+        iRet = read(fd,Buffer,11); 
 
-            printf("%d Bytes gets read succesfully",iRet);
+        printf("%d Bytes gets read succesfully",iRet);
 
-            printf("Data from file is : %s \n",Buffer);
+       printf("Data from file is : %s \n",Buffer);
 
-             iRet = read(fd,Buffer,20);     // 11 pasun pudhe read kel jail
+         iRet = read(fd,Buffer,20);     // 11 pasun pudhe read kel jail
 
-            printf("%d Bytes gets read succesfully",iRet);
+        printf("%d Bytes gets read succesfully",iRet);
 
-            printf("Data from file is : %s \n",Buffer);
+        printf("Data from file is : %s \n",Buffer);
 
-
-
-            close(fd);
-        }
+        close(fd);
+    }
 
     return 0;
 }

@@ -86,13 +86,14 @@ int main()
 
     printf("Number of elements in linked list are : %d \n",iRet);
 
-     InsertLast(&head,101);
+    InsertLast(&head,101);
     InsertLast(&head,111);
     InsertLast(&head,121);
 
     Display(head);
 
     iRet = Count(head);
+   
 
     printf("Number of elements in linked list are : %d \n",iRet);
 

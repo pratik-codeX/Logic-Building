@@ -132,9 +132,9 @@ void DeleteLast(PPNODE first)
         {
             temp = temp->next;
         }
-        temp->prev->next = NULL;            //$
-        free(temp);
-
+             
+        free(temp->next);
+        temp->next = NULL;
     }
 }
 
@@ -171,8 +171,10 @@ void DeleteAtPos(PPNODE first , int pos)
             temp = temp -> next;
         }
 
+        target = temp -> next;
+
         temp->next = target -> next;
-        target-> next -> prev = temp ;
+        target-> next -> prev = temp;
         free(target);
     }
 }
@@ -241,6 +243,10 @@ int main()
     iRet = Count(head);
     printf("The elements in linked list are %d \n",iRet);
 
+    DeleteLast(&head);
+     Display(head);
+    iRet = Count(head);
+    printf("The elements in linked list are %d \n",iRet);
 
    InsertAtPos(&head,105,5);
 
@@ -254,6 +260,5 @@ int main()
     iRet = Count(head);
     printf("The elements in linked list are %d \n",iRet);
 
-     
     return 0;
 }

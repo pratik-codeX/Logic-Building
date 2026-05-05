@@ -1,0 +1,46 @@
+import java.util.*;
+import java.io.*;
+
+class program439
+{
+    public static void main(String A[]) 
+    {
+        try
+        {
+            Scanner sobj = new Scanner(System.in);
+
+            System.out.println("Enter the name of file that you want to open :");
+            String Fname = sobj.nextLine();
+
+            File fobj = new File(Fname);
+
+            if(fobj.exists())
+            {
+                FileInputStream fiobj = new FileInputStream(fobj);
+                
+
+                byte Arr[] = new byte[10];
+
+                int iRet = fiobj.read(Arr);
+            
+                fiobj.read(Arr);
+                String Str = new String(Arr);
+
+                System.out.println("Data from file : "+Str);
+                System.out.println("Data from file : "+iRet);
+
+            }
+            else
+            {
+             
+                System.out.println("File Not present in current directory");
+                return;
+            }
+    
+        }
+        catch(IOException iobj)
+        {}
+        catch(Exception eobj)       
+        {}
+    }
+}

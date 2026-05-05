@@ -15,31 +15,28 @@ int main()
 
    fd = open(Fname, O_RDONLY);       
    
-        if(fd == -1)
-        {
-            printf("Unable to open file ");
-        }
-        else
-        {
-            printf("File is succesfully opned \n");
+    if(fd == -1)
+    {
+        printf("Unable to open file ");
+    }
+    else
+    {
+        printf("File is succesfully opned \n");
                         
-            iRet = read(fd,Buffer,11); 
+        iRet = read(fd,Buffer,11); 
+        printf("%d Bytes gets read succesfully",iRet);
+        printf("Data from file is : %s \n",Buffer);
+    
+        close(fd);
 
-            printf("%d Bytes gets read succesfully",iRet);
-            printf("Data from file is : %s \n",Buffer);
-             close(fd);
+        fd = open(Fname,O_RDONLY);     //Chage 
 
-             fd = open(Fname,O_RDONLY);     //Chage 
+        iRet = read(fd,Buffer,20);     // 11 pasun pudhe read kel jail
+        printf("%d Bytes gets read succesfully",iRet);
+        printf("Data from file is : %s \n",Buffer);
 
-            iRet = read(fd,Buffer,20);     // 11 pasun pudhe read kel jail
-
-            printf("%d Bytes gets read succesfully",iRet);
-
-            printf("Data from file is : %s \n",Buffer);
-
-
-
-            close(fd);
+        close(fd);
+        
         }
 
     return 0;

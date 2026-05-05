@@ -16,7 +16,6 @@ void Display(T Arr[],int iLength)
     {
         cout<<Arr[iCnt]<<"\n";
     }
-
 }
 
 int main()
@@ -31,7 +30,6 @@ int main()
     //Use
 
     cout<<"Enter the Elements"<<"\n";
-
 
     Display(ptr,Size);
 

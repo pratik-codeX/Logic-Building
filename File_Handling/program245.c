@@ -15,29 +15,27 @@ int main()
     printf("Enter the file name that you want to open : \n");
     scanf("%s",Fname);
 
-   fd = open(Fname, O_RDONLY);       
-   
-        if(fd == -1)
+    fd = open(Fname, O_RDONLY);       
+    if(fd == -1)
+    {
+        printf("Unable to open file \n");
+    }
+    else
+    {
+        printf("File is succesfully opned  fd  :%d\n",fd);
+                    
+        while((iRet = read(fd,Buffer,BUFFER_SIZE)) != 0)
         {
-            printf("Unable to open file ");
+            // printf("%s",Buffer); 
+           //write(1,Buffer,iRet);   
+            // memset(Buffer,'\0',BUFFER_SIZE);
+            iSum = iSum + iRet;
         }
-        else
-        {
-            printf("File is succesfully opned  fd  :%d\n",fd);
-                        
-            while((iRet = read(fd,Buffer,BUFFER_SIZE)) != 0)
-            {
-
-                // printf("%s",Buffer); 
-                //write(1,Buffer,iRet);   
-                // memset(Buffer,'\0',BUFFER_SIZE);
-                iSum = iSum + iRet;
-            }
             
-            printf("File size is : %d",iSum);
+        printf("File size is : %d",iSum);
 
-            close(fd);
-        }
+       close(fd);
+    }
 
     return 0;
 }

@@ -12,16 +12,15 @@ int main()
     printf("Enter the file name that you want to open : \n");
     scanf("%s",Fname);
 
-   fd = open(Fname,O_RDWR);       // internally : fopen() -> open() -> open Algorithm ->  kernel -> hardware    
-   
+    fd = open(Fname,O_RDWR);       // internally : fopen() -> open() -> open Algorithm ->  kernel -> hardware    
         if(fd == -1)
         {
-            printf("Unable to open file ");
+            printf("Unable to open file \n");
         }
         else
         {
             printf("File is succesfully opened \n");
-                        //(where,what,how many)
+                    //(where,what,how many)
             iRet = write(fd,Buffer,11);
 
             printf("%d Bytes gets written succesfully",iRet);

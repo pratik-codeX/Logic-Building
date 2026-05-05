@@ -1,0 +1,17 @@
+import java.util.*; //hashmap
+
+class program503
+{
+    public static void main(String A[]) 
+    {
+        Scanner sobj = new Scanner(System.in);
+
+        System.out.println("Enter the first String : ");
+        String str = sobj.nextLine();
+
+        str = str.replaceAll(" ","");
+
+        System.out.println(str);
+        
+    }   
+}

@@ -15,30 +15,26 @@ int main()
     printf("Enter the file name that you want to open : \n");
     scanf("%s",Fname);
 
-   fd = open(Fname, O_RDONLY);       
-   
-        if(fd == -1)
-        {
-            printf("Unable to open file ");
-        }
-        else
-        {
-            printf("File is succesfully opned  fd  :%d\n",fd);
+    fd = open(Fname, O_RDONLY);       
+    if(fd == -1)
+    {
+        printf("Unable to open file ");
+    }
+    else
+    {
+        printf("File is succesfully opned  fd  :%d\n",fd);
                         
-            while((iRet = read(fd,Buffer,BUFFER_SIZE)) != 0)
+        while((iRet = read(fd,Buffer,BUFFER_SIZE)) != 0)
+        {
+            for(iCnt = 0;iCnt < iRet;iCnt++)        //Buffer_size dil tr garbage yeil
             {
-                for(iCnt = 0;iCnt < iRet;iCnt++)        //Buffer_size dil tr garbage yeil
-                {
-                    printf("%c\n",Buffer[iCnt]);
-                }
-                memset(Buffer,'\0',BUFFER_SIZE);
-              
-            }
-            
-           
-
-            close(fd);
+                printf("%c\n",Buffer[iCnt]);
+           }
+            memset(Buffer,'\0',BUFFER_SIZE);   
         }
+            
+        close(fd);
+    }
 
     return 0;
 }

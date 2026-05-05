@@ -15,14 +15,13 @@ int main()
     //O_RDWR
 
     fd = open(Fname,O_RDWR);
-
     if(fd == -1)
     {
         printf("unable to open the file \n");
         return -1;
     }
     
-    printf("File is succesfully opened with  FD %d",fd);
+    printf("File is succesfully opened with  FD %d \n",fd);
 
     return 0;
 }

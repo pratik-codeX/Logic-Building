@@ -9,7 +9,7 @@ struct node
 };
 
 typedef struct node NODE;
-typedef struct node * PNODE;
+typedef struct node * PNODE;                                                                     
 typedef struct node ** PPNODE;
 
 int main()
@@ -35,7 +35,8 @@ int main()
     head = newn1;
 
     printf("%d\n",head->data);
-     printf("%d\n",head->next->data);
-      printf("%d\n",head->next->next->data);
+    printf("%d\n",head->next->data);
+    printf("%d\n",head->next->next->data);
+
     return 0;
 }

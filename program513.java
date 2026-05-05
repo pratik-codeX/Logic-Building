@@ -1,0 +1,22 @@
+//_ _ _India_ _ _ _is_ _my_country_ _ _ _ 
+//After Trim
+//India_ _ _ _is_ _my_country
+
+import java.util.*;
+
+class program513
+{
+    public static void main(String A[])
+    {
+        Scanner sobj = new Scanner(System.in);  
+        System.out.println("Enter String : ");
+
+        String str = sobj.nextLine();
+
+        str = str.trim();
+
+        str.replaceAll("  "," ");
+
+        System.out.println(str);
+    }
+}

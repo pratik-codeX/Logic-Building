@@ -7,10 +7,8 @@ void ReverseDisplay(char *str)
 
     while(*str != '\0')
     {
-        
         iCount++;
         str++;
-
     }
      str--;
      while(str >= iStart)

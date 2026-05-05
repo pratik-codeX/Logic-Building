@@ -1,0 +1,18 @@
+import java.util.*;
+
+class program514
+{
+    public static void main(String A[])
+    {
+        Scanner sobj = new Scanner(System.in);  
+        System.out.println("Enter String : ");
+
+        String str = sobj.nextLine();
+
+        str = str.trim();
+
+        str.replaceAll("ab","x");
+
+        System.out.println(str);
+    }
+}

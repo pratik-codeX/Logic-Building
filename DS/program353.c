@@ -88,7 +88,6 @@ void Display(PNODE first , PNODE last)
         printf("%d",first->data);
         first = first->next;
     }
-
 }
 int Count(PNODE first , PNODE last)
 {

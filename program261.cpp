@@ -15,7 +15,6 @@ int Addition(T Arr[],int iLength)
     for(iCnt = 0;iCnt < iLength;iCnt++)
     {
         Sum = Arr[iCnt] + Sum;
-        
     }
     return Sum;
 }
